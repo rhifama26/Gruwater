@@ -27,3 +27,6 @@ Thumbs.db
 
 # Editor
 .vscode/
+
+# Konteks AI agent (lokal saja)
+AGENTS.md
