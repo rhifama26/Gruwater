@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment / secrets
+.env
+*.env.local
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv*/
+venv/
+
+# Generated training outputs (besar & bisa dibuat ulang)
+Training/outputs/predictions.csv
+Training/outputs/predictions_final.csv
+
+# Logs & OS junk
+*.log
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
