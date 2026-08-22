@@ -30,3 +30,6 @@ Thumbs.db
 
 # Konteks AI agent (lokal saja)
 AGENTS.md
+
+# Data runtime IoT (CSV hasil penerimaan)
+data_masuk/
