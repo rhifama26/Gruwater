@@ -1,23 +1,6 @@
-const fs = require('fs');
-const path = require('path');
 const Data = require('../models/dataModel');
 const { validateWaterQualityData } = require('../utils/validation');
 const { calculateRiskScore, getMitigationRecommendation } = require('../utils/helpers');
-
-const DATA_MASUK_DIR = path.join(__dirname, '..', '..', 'data_masuk');
-
-const appendToCsv = (row) => {
-  try {
-    if (!fs.existsSync(DATA_MASUK_DIR)) fs.mkdirSync(DATA_MASUK_DIR, { recursive: true });
-    const file = path.join(DATA_MASUK_DIR, `sensor_${new Date().toISOString().slice(0, 10)}.csv`);
-    if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, 'id,tanggal,lokasi,suhu,pH,salinitas,kekeruhan\n');
-    }
-    fs.appendFileSync(file, `${row.id},${row.tanggal},${row.lokasi},${row.suhu},${row.pH},${row.salinitas},${row.kekeruhan}\n`);
-  } catch (err) {
-    console.error('Gagal menulis CSV data_masuk:', err.message);
-  }
-};
 
 const DataController = {
   getAll: async (req, res) => {
@@ -92,7 +75,6 @@ const DataController = {
       if (errors.length) return res.status(400).json({ success: false, message: errors.join(', ') });
       const id = await Data.create({ ...req.body, user_id: req.user.id });
       const newData = await Data.findById(id, req.user.id);
-      appendToCsv(newData);
       res.status(201).json({ success: true, data: newData });
     } catch (error) {
       res.status(500).json({ success: false, message: 'Server error' });

@@ -9,7 +9,6 @@ const predictionInputRoutes = require('./api/predictionInputRoutes');
 const reportRoutes = require('./api/reportRoutes');
 const usersRoutes = require('./api/usersRoutes');
 const locationRoutes = require('./api/locationRoutes');
-const sensorRoutes = require('./api/sensorRoutes');
 
 dotenv.config();
 
@@ -28,7 +27,6 @@ app.use('/api/prediction-inputs', predictionInputRoutes);
 app.use('/api/report', reportRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/lokasi', locationRoutes);
-app.use('/api/sensor', sensorRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Server running', timestamp: new Date() });
